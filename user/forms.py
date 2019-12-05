@@ -1,11 +1,13 @@
 from django import forms
 from .models import SignupInfo
 
-class SignupInfoForm(forms.ModelForm):
+class SignupInfoForm(forms.Form):
+    first_name=forms.CharField()
+    last_name=forms.CharField()
+    email=forms.EmailField()
+    username=forms.CharField()
+    password1=forms.CharField(label="Password")
     password2=forms.CharField(label="Confirm Password")
-    class Meta:
-        model = SignupInfo
-        fields = ('first_name','last_name','email','username','password','password2')
         # widgets= {
         #     'first_name':forms.TextInput(attrs={'class':'form-control'}),
         #     'last_name':forms.TextInput(attrs={'class':'form-control'}),

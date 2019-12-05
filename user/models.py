@@ -12,4 +12,4 @@ class SignupInfo(models.Model):
     update_date=models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.first_name
+        return self.username

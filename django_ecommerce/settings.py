@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'about',
     'shop',
     'cart',
+    'multiselectfield',
     
 ]
 

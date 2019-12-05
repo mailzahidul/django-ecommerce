@@ -12,18 +12,21 @@ def signup(request):
             first_name=forms.cleaned_data['first_name']
             last_name=forms.cleaned_data['last_name']
             username=forms.cleaned_data['username']
-            password=forms.cleaned_data['password']
+            password1=forms.cleaned_data['password1']
             password2=forms.cleaned_data['password2']
             email=forms.cleaned_data['email']
-            if password == password2:
-                User.objects.create_user(first_name=first_name, last_name=last_name,username=username, password=password, email=email)
-                n_user = authenticate(request, username=username, password=password)
+            if password1 == password2:
+                User.objects.create_user(first_name=first_name, last_name=last_name,username=username, password=password1, email=email)
+                n_user = authenticate(request, username=username, password=password1)
                 if n_user: 
                     login(request, n_user)
                     return redirect('home')                    
                 else:
                     print("No user in this name")
-
+            else:
+                print("Password not same......")
+        else:
+            print("Empty...")
     context={'forms':forms}
     return render(request, 'user/signup.html', context)
 
@@ -40,3 +43,7 @@ def login_view(request):
             print("no user")
     context={'forms':forms}
     return render(request, 'user/login.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

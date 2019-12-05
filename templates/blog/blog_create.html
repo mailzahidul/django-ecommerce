@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-10 justify-content-center">
+        <div class="card">
+            <div class="card-header">Signup Information</div>
+            <div class="card-body">
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>Username: </label>
+                    <input name="username" type="text" class="form-control" value="{{ username }}">
+                    <label>Title: </label>
+                    <input name="title" type="text" class="form-control">
+                    <label>Categories: </label>
+                    <select name="category" class="form-control" multiple>
+                        {% for i in categories %}
+                        <option value="{{ i.category }}">{{ i.category }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Content: </label>
+                    <textarea rows="10" cols="30" name="content" class="form-control"></textarea>
+                    <label>Feature Image: </label>
+                    <input name="feature_img" type="file" class="form-control">
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
